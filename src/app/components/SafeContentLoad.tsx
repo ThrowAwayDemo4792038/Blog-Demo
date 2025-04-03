@@ -23,10 +23,13 @@ const courierPrime = Courier_Prime({
   style: ['normal'],
 });
 
-function formatDate(dateString : Date) {
-  const date = new Date(dateString);
-  const firstOfMonth = startOfMonth(date);
-  return format(firstOfMonth, 'MMMM, 1, yyyy');
+function formatDate(date: Date): string {
+  const options: Intl.DateTimeFormatOptions = {
+    month: 'long',
+    day: '2-digit',
+    year: 'numeric',
+  };
+  return date.toLocaleDateString('en-US', options);
 }
 
 export default function SafeContentLoad({ header, content, createdAt, id }: Props) {
