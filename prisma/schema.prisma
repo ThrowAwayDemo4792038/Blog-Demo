@@ -1,0 +1,48 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model Users {
+  id         String   @id @default(cuid())
+  supabaseId String?  @unique
+  username   String   @unique
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  role       RoleType  @default(NONE)
+
+  // Relations
+  comments Comments[]
+}
+
+model Comments {
+  id        String   @id @default(cuid())
+  postId    String
+  authorId  String
+  content   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  author Users @relation(fields: [authorId], references: [id], onDelete: Cascade)
+}
+
+model Posts {
+  id        String   @id @default(cuid())
+  header    String
+  content   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  images    String?
+}
+
+enum RoleType {
+  ADMIN
+  MODERATOR
+  NONE
+}
