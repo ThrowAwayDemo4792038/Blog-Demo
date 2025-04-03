@@ -47,7 +47,7 @@ function Navbar() {
     return (
         <div className='min-w-full flex flex-col justify-center items-center my-10'>
             <div className={`min-w-1/2 xl:min-w-[30%] space-y-4`}>
-                <div className={`prose text-3xl ${merriweather.className} flex justify-center`}>Kovarsta&apos;s Web Ramble</div>
+                <div className={`prose text-3xl ${merriweather.className} flex justify-center`}>Web Ramble</div>
                 <div className={`text-sm italic ${courierPrime.className} flex items-center justify-center`}>The ramble of an internet schizo</div>
 
                 <div className='flex justify-center'>
@@ -60,7 +60,10 @@ function Navbar() {
                                 isUser ?
                                     <button className='text-red-500' onClick={() => (signout(), setIsUser(null))}>Logout</button>
                                     :
-                                    <a className='text-red-500' href='/login'>Signin</a>
+                                    <div className='min-w-full flex gap-10'>
+                                        <a className='text-red-500' href='/signup'>Signin</a>
+                                        <a className='text-red-500' href='/signup'>Login</a>
+                                    </div>
                         }
                     </div>
                 </div>

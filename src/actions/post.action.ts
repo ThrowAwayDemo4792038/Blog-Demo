@@ -6,7 +6,7 @@ import { supabase } from "@/lib/supabase";
 import { v4 as uuidv4 } from "uuid";
 import { getFileNameFromUrl } from "./helpers.action";
 
-const BLOG_DEMO_BUCKET: string = "blog-demo-bucket";
+const BLOG_DEMO_BUCKET: string = "demo";
 
 export async function getAllPost() {
 
